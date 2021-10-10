@@ -9,7 +9,7 @@ public class BallMovement : MonoBehaviour
     private Rigidbody rb;
 
     Vector3 forcecVec;
-    public float moveSpeed = 20f; 
+    public float moveSpeed; 
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class BallMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 tilt = Input.acceleration;
 
@@ -26,7 +26,8 @@ public class BallMovement : MonoBehaviour
             tilt = Quaternion.Euler(90, 0, 0) * tilt;
         }
 
-        rb.AddForce(tilt * 5);
+
+        rb.AddForce(tilt * moveSpeed);
         Debug.DrawRay(transform.position + Vector3.up, tilt, Color.blue);
 
         //rb.AddForce(Input.gyro.userAcceleration.x * forcecVec);

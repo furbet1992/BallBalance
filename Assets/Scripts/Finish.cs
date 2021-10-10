@@ -17,8 +17,15 @@ public class Finish : MonoBehaviour
         if (other.tag == "Player")
         {
             uiText.SetActive(true);
-            SceneMan.RestartLevel(); 
+            StartCoroutine(ChangeScene()); 
+           
         }
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(2);
+        SceneMan.NextLevel();
     }
 
 }
